@@ -12,10 +12,10 @@ print(Rhiz_countries)
 #geo data by country
 Global_countries = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 
-#print(Global_countries)
+print(Global_countries)
 
 #Check the contents of the natural earth low res dataset
-#np.savetxt('out.txt', Global_countries, fmt='%s')
+np.savetxt('naturalearth_lowres.txt', Global_countries, fmt='%s')
 
 #merge datasets
 Rhiz_countries = Global_countries.merge(Rhiz_countries, how="left", left_on=['name'], right_on=['Country'])
@@ -32,7 +32,6 @@ folium.Choropleth(
     geo_data=Rhiz_countries,
     name='choropleth',
     data=Rhiz_countries,
- #   columns=['Country', 'Ecology'],
     columns=['Country', 'Number_found'],
     key_on='feature.properties.Country',
     fill_color='YlGnBu',
